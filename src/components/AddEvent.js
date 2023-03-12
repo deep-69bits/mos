@@ -4,6 +4,7 @@ import { app } from '../firebase'
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const AddEvent = () => {
     const db = getFirestore(app);
     const auth =getAuth(app)
@@ -12,6 +13,8 @@ const AddEvent = () => {
     const [name,setName]=useState(null)
     const [desc,setDesc]=useState(null)
     const [load,setLoad]=useState(true)
+ 
+    const navigate = useNavigate();
 
      const changeName =(e)=>{
         setName(e.target.value)
@@ -21,7 +24,6 @@ const AddEvent = () => {
      const changeDesc =(e)=>{
          setDesc(e.target.value)
          setLoad(!load)
-        //  console.log(desc)
      }
      const submitevent= async ()=>{
         try {
@@ -31,6 +33,10 @@ const AddEvent = () => {
               type:"event"
             });
             console.log("Document written with ID: ", docRef.id);
+            if(docRef.id!=null){
+              navigate("/events");
+            }
+
           } catch (e) {
             console.error("Error adding document: ", e);
           }

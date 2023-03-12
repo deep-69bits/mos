@@ -9,6 +9,8 @@ import HomePage from './components/HomePage';
 import Events from './components/Events';
 import AddEvent from './components/AddEvent';
 import Commitie from './components/Commitie';
+import AddCommitieMember from './components/AddCommitieMember';
+import UpdateDoc from './components/UpdateDoc';
 
 
 
@@ -36,6 +38,8 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/addevent" element={<AddEvent/>} />
           <Route path="/commitiemembers" element={<Commitie/>} />
+          <Route path='/AddCommitieMember' element={<AddCommitieMember />} />
+          <Route path='/updatedoc' element={<UpdateDoc/>} />
         </Routes>
       </BrowserRouter>
 

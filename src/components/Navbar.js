@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from './SignUp';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
     const [navbar, setNavbar] = useState(false);
     return (
@@ -62,13 +63,13 @@ const Navbar = () => {
                             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
 
                                 <li className="text-white px-3 font-semibold py-2 rounded-sm">
-                                    <a href="/events">Events  </a>
+                                    <Link  to={"/events"}>Events  </Link>
                                 </li>
                                 <li className="text-white px-3 font-semibold py-2 rounded-sm">
-                                <a href="/commitiemembers">Comittie Member  </a>
+                                <Link to={"/commitiemembers"} href="/commitiemembers" >Comittie Member  </Link>
                                </li> 
                                <li className="text-white px-3 font-semibold py-2 rounded-sm">
-                               <a href="/hadid">Events  </a>
+                               <Link to={"/hadid"} >Hadid</Link>
                                </li>
                                
                             </ul>

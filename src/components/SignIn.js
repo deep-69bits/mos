@@ -19,7 +19,7 @@ const SignIn = () => {
 		.catch((error) => {
 			const errorCode = error.code;
 			const errorMessage = error.message;
-			
+			console.log("password didnt matched")
 		});
 	}
 		const changeemail =(e)=>{
