@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Card from "./Card";
+import MemberCard from "./MemberCard";
 import Button from "./Button";
 
 const Commitie = () => {
@@ -8,12 +8,12 @@ const Commitie = () => {
     <div className="h-full">
       <Navbar />
       <div className="flex flex-wrap gap-3 justify-evenly">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        <MemberCard></MemberCard>
+        <MemberCard></MemberCard>
+        <MemberCard></MemberCard>
+        <MemberCard></MemberCard>
       </div>
-      <Button href="" className='my-3 mx-auto'>Add Commitie Member</Button>
+      <Button href="" className='my-3 mx-auto'>Add Committee Member</Button>
     </div>
   );
 };

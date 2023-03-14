@@ -66,7 +66,7 @@ const Navbar = () => {
                                     <Link  to={"/events"}>Events  </Link>
                                 </li>
                                 <li className="text-white px-3 font-semibold py-2 rounded-sm">
-                                <Link to={"/commitiemembers"} href="/commitiemembers" >Comittie Member  </Link>
+                                <Link to={"/committeemembers"} href="/committeemembers" >Committee Member  </Link>
                                </li> 
                                <li className="text-white px-3 font-semibold py-2 rounded-sm">
                                <Link to={"/hadid"} >Hadid</Link>
