@@ -16,23 +16,33 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Card from "./Card";
 import Button from "./Button";
-import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
+import { Sidebar, SidebarItem } from "react-responsive-sidebar";
 
 const Events = () => {
   const db = getFirestore(app);
-    const auth =getAuth(app)
-    const user=auth.currentUser
-    const navigate = useNavigate();
-    const signout=()=>{
-      signOut(auth)
-      navigate('/')
-    }
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  const navigate = useNavigate();
+  const signout = () => {
+    signOut(auth);
+    navigate("/");
+  };
   const items = [
-    <SidebarItem><Link to={'/'}>Dashboard</Link> </SidebarItem>,
-    <SidebarItem  > <Link to={'/events'}>Events</Link> </SidebarItem>,
-    <SidebarItem  > <Link to={'/commitiemembers'}>Commitie Member</Link> </SidebarItem>,
-    <SidebarItem  > <Link to={'/hadid'}>Hadid</Link> </SidebarItem>,
-    <SidebarItem  > <button onClick={signout}>logout</button> </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/"}>Dashboard</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/events"}>Events</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/committeemembers"}>Committee Member</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/hadid"}>Hadid</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <button onClick={signout}>logout</button>
+    </SidebarItem>,
   ];
   const [eventdata, setEventdata] = useState([]);
 
@@ -47,42 +57,46 @@ const Events = () => {
       data.forEach((doc) => {
         setEventdata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       });
-
     };
     getevents();
   }, []);
 
   return (
     <div className="bg-[#02062a] min-h-screen">
-    <Sidebar content={items} background="#000000" backdrop={true}>
-    
-    <div className="flex gap-3 flex-wrap ">
-    {eventdata.map((item, index) => {
-      if (item?.type == "event") {
-        return (
-          <Card className="min-w-[30%] max-w-[30%]">
-          {/* <h1>{item.id}</h1> */}
-          {item.image && (
-            <img src={item.image} alt="" className="object-cover w-full max-h-[400px]"/>
-            )}
-            <h1 className="text-3xl">{item.NameOfEvent}</h1>
-              <h1 className="text-lg text-gray-500 font-light">
-              {item.DescriptionOfEvent}
-              </h1>
-              {/* <h1>{item.type}</h1> */}
-              <Button>
-              <Link to={`/updatedoc?type=event&&id=${item.id}`}>Update</Link>
-              </Button>
-            </Card>
-            );
-          }
-        })}
+      <Sidebar content={items} background="#000000" backdrop={true}>
+        <div className="flex gap-3 flex-wrap ">
+          {eventdata.map((item, index) => {
+            if (item?.type == "event") {
+              return (
+                <Card className="lg:min-w-[30%] lg:max-w-[30%] max-w-[90%] min-w-[90%]">
+                  {/* <h1>{item.id}</h1> */}
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="object-cover w-full max-h-[400px]"
+                    />
+                  )}
+                  <h1 className="text-3xl">{item.NameOfEvent}</h1>
+                  <h1 className="text-lg text-gray-500 font-light">
+                    {item.DescriptionOfEvent}
+                  </h1>
+                  {/* <h1>{item.type}</h1> */}
+                  <Button>
+                    <Link to={`/updatedoc?type=event&&id=${item.id}`}>
+                      Update
+                    </Link>
+                  </Button>
+                </Card>
+              );
+            }
+          })}
         </div>
-        <Button className='mx-auto'>
-        <Link to={"/addevent"}>Add Event</Link>
+        <Button className="mx-auto">
+          <Link to={"/addevent"}>Add Event</Link>
         </Button>
       </Sidebar>
-      </div>
+    </div>
   );
 };
 

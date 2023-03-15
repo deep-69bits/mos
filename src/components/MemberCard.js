@@ -3,7 +3,7 @@ import Button from "./Button";
 
 function MemberCard() {
   return (
-    <div className="flex flex-col rounded-md shadow-md justify-evenly h-[20%] w-[25%] overflow-hidden m-10 border text-center p-5">
+    <div className="flex flex-col rounded-md shadow-md justify-evenly h-[20%] lg:w-[45%] w-[90%] overflow-hidden my-10 border text-center p-5">
       <img
         src="https://images.unsplash.com/photo-1602866813929-6bc4933c7013?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHNhbXBsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
         alt=""
