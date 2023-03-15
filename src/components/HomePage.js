@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { getAuth,signOut } from "firebase/auth";
 import { app } from '../firebase'
 import { getFirestore } from "firebase/firestore";
@@ -6,7 +6,7 @@ import { collection, addDoc } from "firebase/firestore";
 import Navbar from './Navbar';
 import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 
 const HomePage = () => {
     const db = getFirestore(app);
@@ -25,6 +25,23 @@ const HomePage = () => {
             console.error("Error adding document: ", e);
           }
     }
+    useEffect(()=>{
+       
+      const func=async()=>{
+        axios.get('http://api.aladhan.com/v1/calendarByCity/2023/4?city=Kuala%20Lumpu&country=malaysia&method=2')
+        .then(function (response) {
+          console.log(response.data.data[0].timings);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally(function () {
+        });
+      }
+      func()
+       
+    },[])
+
    
     const items = [
       <SidebarItem>Dashboard</SidebarItem>,
@@ -38,8 +55,7 @@ const HomePage = () => {
     
     <Sidebar content={items} background="#000000" backdrop={true}>
     <div className='text-white'>
-    <h1>{user.email}</h1>
-   
+
     </div>
     </Sidebar>
     </div>

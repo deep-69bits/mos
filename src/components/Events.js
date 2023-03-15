@@ -22,14 +22,18 @@ const Events = () => {
   const db = getFirestore(app);
     const auth =getAuth(app)
     const user=auth.currentUser
+    const navigate = useNavigate();
+    const signout=()=>{
+      signOut(auth)
+      navigate('/')
+    }
   const items = [
-    <SidebarItem>Dashboard</SidebarItem>,
+    <SidebarItem><Link to={'/'}>Dashboard</Link> </SidebarItem>,
     <SidebarItem  > <Link to={'/events'}>Events</Link> </SidebarItem>,
     <SidebarItem  > <Link to={'/commitiemembers'}>Commitie Member</Link> </SidebarItem>,
     <SidebarItem  > <Link to={'/hadid'}>Hadid</Link> </SidebarItem>,
-    <SidebarItem  > <button onClick={()=>{signOut(auth)}}>logout</button> </SidebarItem>,
+    <SidebarItem  > <button onClick={signout}>logout</button> </SidebarItem>,
   ];
-  const navigate = useNavigate();
   const [eventdata, setEventdata] = useState([]);
 
   useEffect(() => {
