@@ -11,6 +11,7 @@ import AddEvent from "./components/AddEvent";
 import Committee from "./components/Committee";
 import AddCommitteeMember from "./components/AddCommitteeMember";
 import UpdateDoc from "./components/UpdateDoc";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   const auth = getAuth(app);
@@ -32,9 +33,10 @@ function App() {
           {logged ? (
             <Route path="/" element={<HomePage />} />
           ) : (
-            <Route path="/" element={<SignIn />} />
+            <Route path="/" element={<LandingPage/>} />
           )}
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/events" element={<Events />} />
           <Route path="/addevent" element={<AddEvent />} />
           <Route path="/committeemembers" element={<Committee />} />

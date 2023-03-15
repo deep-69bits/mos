@@ -4,7 +4,8 @@ import { app } from '../firebase'
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import Navbar from './Navbar';
-
+import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
+import { Link } from 'react-router-dom';
 
 
 const HomePage = () => {
@@ -25,13 +26,22 @@ const HomePage = () => {
           }
     }
    
- 
+    const items = [
+      <SidebarItem>Dashboard</SidebarItem>,
+      <SidebarItem  > <Link to={'/events'}>Events</Link> </SidebarItem>,
+      <SidebarItem  > <Link to={'/commitiemembers'}>Commitie Member</Link> </SidebarItem>,
+      <SidebarItem  > <Link to={'/hadid'}>Hadid</Link> </SidebarItem>,
+      <SidebarItem  > <button onClick={()=>{signOut(auth)}}>logout</button> </SidebarItem>,
+    ];
   return (
-    <div>
-    <Navbar/>
+    <div className='h-screen bg-[#02062a]'>
     
-     <h1>{user.email}</h1>
-     <button onClick={()=>{signOut(auth)}}>logout</button>
+    <Sidebar content={items} background="#000000" backdrop={true}>
+    <div className='text-white'>
+    <h1>{user.email}</h1>
+   
+    </div>
+    </Sidebar>
     </div>
   )
 }
