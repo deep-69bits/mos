@@ -1,14 +1,15 @@
-import React,{useEffect, useState} from 'react'
-import { getAuth,signOut } from "firebase/auth";
-import { app } from '../firebase'
+import React, { useEffect, useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../firebase";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
-import Navbar from './Navbar';
-import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import Navbar from "./Navbar";
+import { Sidebar, SidebarItem } from "react-responsive-sidebar";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const HomePage = () => {
+
     const db = getFirestore(app);
     const auth =getAuth(app)
     const user=auth.currentUser
@@ -21,27 +22,40 @@ const HomePage = () => {
        const [isha,setIsha]=useState("")
     
     const func = async ()=>{
+
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  const navigate = useNavigate();
+  const signout = () => {
+    signOut(auth);
+    navigate("/");
+  };
+  const func = async () => {
+
     try {
-            const docRef = await addDoc(collection(db, `${user.email}\Events` ), {
-              first: "Ada",
-              last: "Lovelace",
-              born: 1815
-            });
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+      const docRef = await addDoc(collection(db, `${user.email}\Events`), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
+  };
 
-    const [date, setDate] = useState(new Date());
-    function refreshClock() {
-      setDate(new Date());
-    }
+  const [date, setDate] = useState(new Date());
+  function refreshClock() {
+    setDate(new Date());
+  }
 
-    useEffect(()=>{
-        
-      const func=async()=>{
-        axios.get('http://api.aladhan.com/v1/calendarByCity/2023/4?city=Kuala%20Lumpu&country=malaysia&method=2')
+  useEffect(() => {
+    const func = async () => {
+      axios
+        .get(
+          "http://api.aladhan.com/v1/calendarByCity/2023/4?city=Kuala%20Lumpu&country=malaysia&method=2"
+        )
         .then(function (response) {
           console.log(response.data.data[0].timings);
           setFajr(response.data.data[0].timings.Fajr)
@@ -53,34 +67,15 @@ const HomePage = () => {
         .catch(function (error) {
           console.log(error);
         })
-        .finally(function () {
-        });
-      }
-      func()
-      const timerId = setInterval(refreshClock, 1000);
-      return function cleanup() {
-        clearInterval(timerId);
-      };
-       
-    },[])
-    
-   
-    const items = [
-      <SidebarItem>Dashboard</SidebarItem>,
-      <SidebarItem  > <Link to={'/events'}>Events</Link> </SidebarItem>,
-      <SidebarItem  > <Link to={'/commitiemembers'}>Commitie Member</Link> </SidebarItem>,
-      <SidebarItem  > <Link to={'/hadid'}>Hadid</Link> </SidebarItem>,
-      <SidebarItem  > <button onClick={()=>{signOut(auth)}}>logout</button> </SidebarItem>,
-    ];
+        .finally(function () {});
+    };
+    func();
+    const timerId = setInterval(refreshClock, 1000);
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  }, []);
 
-    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-  return (
-    <div className='h-screen bg-[#02062a]'>
-    
-    <Sidebar content={items} background="#000000" backdrop={true}>
-    <div className='text-white'>
-    <h1 className='text-center mt-2'><span className='text-3xl'>{date.toLocaleTimeString()}</span><br /><span >{weekday[date.getDay()]} <span> </span>{date.getDate()}.{date.getMonth()}.{date.getUTCFullYear()}</span></h1>
 
     <h1>timings</h1>
     <h1>fajr:{fajr}</h1>
@@ -89,10 +84,52 @@ const HomePage = () => {
     <h1>maghrib:{maghrib}</h1>
     <h1>isha:{isha}</h1>
      
-    </div>
-    </Sidebar>
-    </div>
-  )
-}
 
-export default HomePage
+  const items = [
+    <SidebarItem>
+      <Link to={"/"}>Dashboard</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/events"}>Events</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/committeemembers"}>Committee Member</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <Link to={"/hadid"}>Hadid</Link>
+    </SidebarItem>,
+    <SidebarItem>
+      <button onClick={signout}>Logout</button>
+    </SidebarItem>,
+  ];
+
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#02062a]">
+      <Sidebar content={items} background="#000000" backdrop={true}>
+        <div className="text-white">
+          <h1 className="text-center mt-2">
+            <span className="text-3xl">{date.toLocaleTimeString()}</span>
+            <br />
+            <span>
+              {weekday[date.getDay()]} <span> </span>
+              {date.getDate()}.{date.getMonth()}.{date.getUTCFullYear()}
+            </span>
+          </h1>
+        </div>
+      </Sidebar>
+
+    </div>
+  );
+};
+
+export default HomePage;

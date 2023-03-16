@@ -1,9 +1,9 @@
 import React from 'react'
 
-const AddCommitieMember = () => {
+const AddCommitteeMember = () => {
   return (
-    <div>AddCommitieMember</div>
+    <div>AddCommitteeMember</div>
   )
 }
 
-export default AddCommitieMember
+export default AddCommitteeMember
