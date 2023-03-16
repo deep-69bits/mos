@@ -33,7 +33,7 @@ function App() {
           {logged ? (
             <Route path="/" element={<HomePage />} />
           ) : (
-            <Route path="/" element={<LandingPage/>} />
+            <Route path="/" element={<LandingPage/>} />  
           )}
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
