@@ -34,6 +34,12 @@ const HomePage = () => {
   function refreshClock() {
     setDate(new Date());
   }
+  
+  const [Asr,setAsr]=useState('')
+  const [Dhuhr,setDhuhr]=useState('')
+  const [Fajr,setFajr]=useState('')
+  const [Maghrib,setMaghrib]=useState('')
+  const [Isha,setIsha]=useState('')
 
   useEffect(() => {
     const func = async () => {
@@ -42,7 +48,12 @@ const HomePage = () => {
           "http://api.aladhan.com/v1/calendarByCity/2023/4?city=Kuala%20Lumpu&country=malaysia&method=2"
         )
         .then(function (response) {
-          console.log(response.data.data[0].timings.Asr);
+          console.log(response.data.data[0].timings);
+          setAsr(response.data.data[0].timings.Asr)
+          setDhuhr(response.data.data[0].timings.Dhuhr)
+          setFajr(response.data.data[0].timings.Fajr)
+          setMaghrib(response.data.data[0].timings.Maghrib)
+          setIsha(response.data.data[0].timings.Isha)
         })
         .catch(function (error) {
           console.log(error);
@@ -96,6 +107,14 @@ const HomePage = () => {
               {date.getDate()}.{date.getMonth()}.{date.getUTCFullYear()}
             </span>
           </h1>
+
+          <h1>
+           <h1>Fajr:{Fajr}</h1>
+           <h1>Asr:{Asr}</h1>
+           <h1>Dhuhr:{Dhuhr}</h1>
+           <h1>Magrib:{Maghrib}</h1>
+           <h1>Isha:{Isha }</h1>
+           </h1>
         </div>
       </Sidebar>
     </div>
