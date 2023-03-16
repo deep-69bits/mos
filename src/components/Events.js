@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../firebase";
 import { getFirestore } from "firebase/firestore";
+import { Audio,FidgetSpinner,Watch } from 'react-loader-spinner'
 import {
   collection,
   query,
@@ -19,6 +20,8 @@ import Button from "./Button";
 import { Sidebar, SidebarItem } from "react-responsive-sidebar";
 
 const Events = () => {
+  const [loading, setLoading] = useState(true);
+
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
@@ -62,7 +65,7 @@ const Events = () => {
       Logout</button>
     </SidebarItem>,
   ];
-  
+
   const [eventdata, setEventdata] = useState([]);
 
   useEffect(() => {
@@ -76,44 +79,61 @@ const Events = () => {
       data.forEach((doc) => {
         setEventdata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       });
+      setLoading(false)
     };
     getevents();
+
   }, []);
 
   return (
     <div className="bg-[#02062a] min-h-screen">
       <Sidebar content={items} background="#000000" backdrop={true}>
+      
+      { 
+        loading? <div className="flex flex-col justify-center items-center my-auto h-full" >
+        <Watch
+        height="80"
+        width="80"
+        radius="48"
+        color="#ffffff"
+        ariaLabel="watch-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+      />
+        </div> :
         <div className="flex gap-3 flex-wrap ">
-          {eventdata.map((item, index) => {
-            if (item?.type == "event") {
+        {eventdata.map((item, index) => {
+          if (item?.type == "event") {
               return (
                 <Card className="lg:min-w-[30%] lg:max-w-[30%] max-w-[90%] min-w-[90%]">
-                  {/* <h1>{item.id}</h1> */}
-                  {item.image && (
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="object-cover w-full max-h-[400px]"
+                
+                {item.image && (
+                  <img
+                  src={item.image}
+                  alt=""
+                  className="object-cover w-full max-h-[400px]"
                     />
                   )}
                   <h1 className="text-3xl">{item.NameOfEvent}</h1>
                   <h1 className="text-lg text-gray-500 font-light">
-                    {item.DescriptionOfEvent}
+                  {item.DescriptionOfEvent}
                   </h1>
                   {/* <h1>{item.type}</h1> */}
                   <Button>
-                    <Link to={`/updatedoc?type=event&&id=${item.id}`}>
-                      Update
-                    </Link>
+                  <Link to={`/updatedoc?type=event&&id=${item.id}`}>
+                  Update
+                  </Link>
                   </Button>
-                </Card>
-              );
-            }
-          })}
-        </div>
-        <Button className="mx-auto">
-          <Link to={"/addevent"}>Add Event</Link>
-        </Button>
+                  </Card>
+                  );
+                }
+              })}
+              <Button className="mx-auto">
+              <Link to={"/addevent"}>Add Event</Link>
+              </Button>
+              </div>
+        } 
       </Sidebar>
     </div>
   );

@@ -15,23 +15,13 @@ const HomePage = () => {
   const db = getFirestore(app);
   const auth = getAuth(app);
   const user = auth.currentUser;
+  
   const navigate = useNavigate();
   const signout = () => {
     signOut(auth);
     navigate("/");
   };
-  const func = async () => {
-    try {
-      const docRef = await addDoc(collection(db, `${user.email}\Events`), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815,
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
+  
 
   const [date, setDate] = useState(new Date());
   function refreshClock() {
