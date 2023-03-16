@@ -9,7 +9,7 @@ const LandingPage = () => {
       <div>
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <a href="javascript:void(0)">
-            <h2 className=" font-bold text-white text-xl mx-5 mt-[-20px]">DASHMASJID</h2>
+            <h2 className=" font-bold text-white text-xl mx-5 mt-[-20px]"> <img src="./LogoDashMasjid.png" className='w-[50px] inline-block' alt="" /> DASHMASJID</h2>
           </a>
           <div className="md:hidden">
             <button

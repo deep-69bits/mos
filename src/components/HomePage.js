@@ -13,6 +13,13 @@ const HomePage = () => {
     const auth =getAuth(app)
     const user=auth.currentUser
     
+  
+       const [fajr,setFajr]=useState("")
+       const [dhuhr,setDhuhr]=useState("")
+       const [asr,setAsr]=useState("")
+       const [maghrib,setMaghrib]=useState("")
+       const [isha,setIsha]=useState("")
+    
     const func = async ()=>{
     try {
             const docRef = await addDoc(collection(db, `${user.email}\Events` ), {
@@ -36,7 +43,12 @@ const HomePage = () => {
       const func=async()=>{
         axios.get('http://api.aladhan.com/v1/calendarByCity/2023/4?city=Kuala%20Lumpu&country=malaysia&method=2')
         .then(function (response) {
-          console.log(response.data.data[0].timings.Asr);
+          console.log(response.data.data[0].timings);
+          setFajr(response.data.data[0].timings.Fajr)
+          setDhuhr(response.data.data[0].timings.Dhuhr)
+          setAsr(response.data.data[0].timings.Asr)
+          setMaghrib(response.data.data[0].timings.Maghrib)
+          setIsha(response.data.data[0].timings.Isha)
         })
         .catch(function (error) {
           console.log(error);
@@ -70,8 +82,13 @@ const HomePage = () => {
     <div className='text-white'>
     <h1 className='text-center mt-2'><span className='text-3xl'>{date.toLocaleTimeString()}</span><br /><span >{weekday[date.getDay()]} <span> </span>{date.getDate()}.{date.getMonth()}.{date.getUTCFullYear()}</span></h1>
 
-
-
+    <h1>timings</h1>
+    <h1>fajr:{fajr}</h1>
+    <h1>dhuhr:{dhuhr}</h1>
+    <h1>asr:{asr}</h1>
+    <h1>maghrib:{maghrib}</h1>
+    <h1>isha:{isha}</h1>
+     
     </div>
     </Sidebar>
     </div>
