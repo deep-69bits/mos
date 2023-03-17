@@ -147,7 +147,7 @@ const UpdateDoc = () => {
     <div className="min-h-screen bg-[#02062a">
     <Sidebar content={items} background="#000000" backdrop={true}>
         {
-          loading?<div className="flex flex-col  justify-center items-center my-auto h-full" >
+          loading?<div className="flex flex-col  min-h-screen bg-[#02062a] justify-center items-center my-auto h-full" >
           <Watch
           height="80"
           width="80"

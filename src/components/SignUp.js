@@ -3,6 +3,9 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../firebase'
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { getStorage } from 'firebase/storage';
+import { getFirestore } from 'firebase/firestore';
+import { setDoc,doc,addDoc,collection } from 'firebase/firestore';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -12,7 +15,8 @@ const SignUp = () => {
 	 const [password,setPassword]=useState(null)
 	 const [confirmpassword,setConfirmPassword]=useState(null)
 	  const [load,setLoad]=useState(true);
-	const auth = getAuth(app);
+	  const [username,setUsername]=useState(null)
+	 const auth = getAuth(app);
 	 
 	const signup=()=>{
 		if(password===confirmpassword){	
@@ -22,15 +26,25 @@ const SignUp = () => {
 			.then((userCredential) => {
 				const user = userCredential.user;
 				user.displayName=masjidname
-				console.log(user.displayName)
-				navigate('/')
+				 const db = getFirestore(app); 
+                 const storage = getStorage(app);
+				 const setuser=async()=>{
+					const db = getFirestore(app);
+					let docRef = await addDoc(collection(db, "Users"), {
+						email: user.email,
+						MasjidName: masjidname,
+						Username: username
+					  });
+				 }
+				 setuser()
+				 navigate('/')
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 			});
 		}
-	}
+	 }
 	   const changeconfirmpassword=(e)=>{
 		setConfirmPassword(e.target.value)
 		setLoad(!load)
@@ -45,6 +59,10 @@ const SignUp = () => {
 		}
 		const changepassword=(e)=>{
 			setPassword(e.target.value)
+			setLoad(!load)
+		}
+		const changeusername=(e)=>{
+			setUsername(e.target.value)
 			setLoad(!load)
 		}
 	
@@ -67,6 +85,18 @@ const SignUp = () => {
 			  <h1 className="my-2 font-bold mb-10 mt-3">
 				Please enter your details
 			  </h1>
+			  <label htmlFor="email" className="text-[10px] font-bold">
+				USERNAME
+			  </label>
+			  <input
+				type="text"
+				name="username"
+				onChange={changeusername}
+				value={username}
+				placeholder="Username"
+				className="text-black block my-3 sm:w-full lg:w-1/2 rounded-3xl px-3 py-2 bg-gray-200 border-none"
+				id=""
+			  />
 			  <label htmlFor="email" className="text-[10px] font-bold">
 				MASJIDNAME
 			  </label>

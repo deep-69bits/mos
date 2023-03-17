@@ -27,7 +27,7 @@ const AddEvent = () => {
   const changeName = (e) => {
     setName(e.target.value);
     setLoad(!load);
-    // console.log(name)
+   
   };
   const changeDesc = (e) => {
     setDesc(e.target.value);
@@ -39,11 +39,9 @@ const AddEvent = () => {
       if (file) {
         const fileRef = storageRef(storage, `/files/${user.email + file.name + Math.random() * 10000}`);
         const uploadTask = uploadBytesResumable(fileRef, file);
-        // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
