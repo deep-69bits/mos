@@ -66,7 +66,7 @@ const Timings = () => {
                  </div>
                  )
                 })
-            }
+        }
     </div>
     </div>
     </div>

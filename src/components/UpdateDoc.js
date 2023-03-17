@@ -159,24 +159,29 @@ const UpdateDoc = () => {
           visible={true}
         />
           </div> :
-          <div className="min-h-screen bg-[#02062a] ">
-          <form>
+          <div className="min-h-screen py-40 bg-[#02062a] ">
+          <form className="w-1/2 m-auto">
+          <h1 className="text-white text-2xl my-5 font-semibold">
+          UPDATE EVENT
+        </h1>
           <input
           type="text"
           onChange={(e) => {setName(e.target.value);}}
-          className="border-[2px] text-black"
+          className="text-black block my-3 sm:w-full  rounded-3xl px-3 py-2 bg-gray-200 border-none"
           value={name}
           placeholder="Name of event"
           />
+          <br />
           <input
           type="text"
           onChange={(e) => {
             setDesc(e.target.value);
           }}
-          className="border-[2px] text-black"
+          className="text-black block my-3 sm:w-full  rounded-3xl px-3 py-2 bg-gray-200 border-none"
           value={des}
           placeholder="Name of event"
         />
+        <br />
         <input
         type="file"
         onChange={(e) => {
@@ -185,7 +190,9 @@ const UpdateDoc = () => {
           name=""
           id=""
           />
+          <br />
           <button
+          className="sm:w-full my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl"
           onClick={async () => {
             navigate("/events");
             const db = await getFirestore(app);
@@ -196,7 +203,7 @@ const UpdateDoc = () => {
           Delete
           </button>
           <br />
-          <button onClick={updatedoc}>Update</button>
+          <button className="sm:w-full my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl" onClick={updatedoc}>Update</button>
           </form>
           </div>
         }

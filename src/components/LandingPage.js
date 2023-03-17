@@ -29,6 +29,8 @@ const LandingPage = () => {
     Allmasjids();
   }, [])
 
+  
+
   return (
     <div className='w-full h-screen bg-[#02062a]'>
       <nav className="w-full  ">
