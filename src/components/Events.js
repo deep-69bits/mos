@@ -69,8 +69,8 @@ const Events = () => {
   const [eventdata, setEventdata] = useState([]);
 
   useEffect(() => {
-    const getevents = async () => {
-      const db = await getFirestore(app);
+     const getevents = async () => {
+       const db = await getFirestore(app);
       const auth = await getAuth(app);
       const user = await auth.currentUser;
       const eventss = await collection(db, user.email);

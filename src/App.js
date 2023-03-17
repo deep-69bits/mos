@@ -12,6 +12,7 @@ import Committee from "./components/Committee";
 import AddCommitteeMember from "./components/AddCommitteeMember";
 import UpdateDoc from "./components/UpdateDoc";
 import LandingPage from "./components/LandingPage";
+import Timings from "./components/Display/Timings";
 
 function App() {
   const auth = getAuth(app);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/committeemembers" element={<Committee />} />
           <Route path="/AddCommitteeMember" element={<AddCommitteeMember />} />
           <Route path="/updatedoc" element={<UpdateDoc />} />
+          <Route path="/masjid" element={<Timings />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -93,7 +93,7 @@ const AddEvent = () => {
           <h1 className="block w-full text-center text-gray-800 text-2xl font-bold mb-6">
             Register
           </h1>
-          <div className="flex flex-col mb-4">
+          <div className="flex flex-col mb-4 text-black">
             <label
               className="mb-2 font-bold text-lg text-gray-900"
               for="first_name">
@@ -108,7 +108,7 @@ const AddEvent = () => {
               id="first_name "
             />
           </div>
-          <div className="flex flex-col mb-4">
+          <div className="flex flex-col mb-4 text-black">
             <label
               className="mb-2 font-bold text-lg text-gray-900"
               for="last_name">

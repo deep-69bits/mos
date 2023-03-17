@@ -80,7 +80,7 @@ const SignUp = () => {
 			  DASHMASJID
 			  </Link>
 			</h1>
-			<div className="justify-center text-white  mt-40">
+			<div className="justify-center text-white  mt-16">
 			  <h1 className="text-3xl font-bold">Welcome, to DashMasjid</h1>
 			  <h1 className="my-2 font-bold mb-10 mt-3">
 				Please enter your details

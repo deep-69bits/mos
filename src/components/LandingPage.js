@@ -4,23 +4,29 @@ import { Auth, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { app } from '../firebase';
 import { collection, getDocs } from "firebase/firestore";
+import { Audio,FidgetSpinner,Watch } from 'react-loader-spinner'
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [navbar, setNavbar] = useState(false);
+  const [masjids,setMasjids]=useState([])
+ const [loading,setLoading]=useState(true)
   const auth = getAuth(app);
+  const navigate = useNavigate();
   useEffect(() => {
 
     const Allmasjids = async () => {
       console.log("nnnwfw")
       const db = await getFirestore(app);
       const auth = await getAuth(app);
-      const querySnapshot = await getDocs(collection(db, "Users"));
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+      const data = await getDocs(collection(db, "Users"));
+      data.forEach((doc) => {
+        setMasjids(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       });
+      setLoading(false)
+      console.log(masjids)
     }
     Allmasjids();
-
   }, [])
 
   return (
@@ -106,6 +112,41 @@ const LandingPage = () => {
         <div>
           <h1 className='text-white font-bold text-7xl'> The Solution to all <br /> your problems</h1>
           <h2 className='text-white my-5 text-xl'>Elegent-designed and user-friendly mosque dashboard. <br /> Suitable to any type of mosque and can be acces anywhere</h2>
+          {
+            loading?
+            <div className='text-center justify-center items-center  w-2/3' >
+            <div className='inline-block mx-auto  my-5 '>
+            <Watch
+            className="mx-auto"
+            height="30"
+            width="40"
+            radius="48"
+            color="#ffffff"
+            ariaLabel="watch-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+            />
+            </div>
+            </div>
+            :
+            <div className='w-2/3'>
+            <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+            <select  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option selected>Choose a Masjid</option>
+              {
+                masjids.map((item,index)=>{
+                  return(
+                    <option value="US" onClick={()=>{navigate(`/masjid?email=${item.email}`)}}>
+                    {item.MasjidName}
+                    </option>
+                    )
+                })
+              }
+              
+            </select>
+            </div>
+          }
         </div>
         <div>
           <img src="./LogoDashMasjid.png" alt="" />
