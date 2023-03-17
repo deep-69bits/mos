@@ -1,7 +1,32 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
+import { Auth,getAuth  } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { app } from '../firebase';
 const LandingPage = () => {
     const [navbar, setNavbar] = useState(false);
+    console.log("fwbfuwb")
+    const auth = getAuth(app);
+    useEffect(()=>{
+
+      // const listAllUsers = (nextPageToken) => {
+      //   getAuth()
+      //     .listUsers(1000, nextPageToken)
+      //     .then((listUsersResult) => {
+      //       listUsersResult.users.forEach((userRecord) => {
+      //         console.log('user', userRecord.toJSON());
+      //       });
+      //       if (listUsersResult.pageToken) {
+      //         listAllUsers(listUsersResult.pageToken);
+      //       }
+      //     })
+      //     .catch((error) => {
+      //       console.log('Error listing users:', error);
+      //     });
+      // };
+      // listAllUsers();
+    },[])
+
   return (
     <div className='w-full h-screen bg-[#02062a]'>
     <nav className="w-full  ">
