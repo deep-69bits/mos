@@ -107,12 +107,11 @@ const Events = () => {
           if (item?.type == "event") {
               return (
                 <Card className="lg:min-w-[30%] lg:max-w-[30%] max-w-[90%] min-w-[90%]">
-                
                 {item.image && (
                   <img
                   src={item.image}
                   alt=""
-                  className="object-cover w-full max-h-[400px]"
+                  className="object-cover pb-4 rounded-t-3xl"
                     />
                   )}
                   <h1 className="text-3xl">{item.NameOfEvent}</h1>
@@ -120,7 +119,7 @@ const Events = () => {
                   {item.DescriptionOfEvent}
                   </h1>
                   {/* <h1>{item.type}</h1> */}
-                  <Button>
+                  <Button className="lg:w-1/2 sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
                   <Link to={`/updatedoc?type=event&&id=${item.id}`}>
                   Update
                   </Link>
@@ -129,7 +128,7 @@ const Events = () => {
                   );
                 }
               })}
-              <Button className="mx-auto">
+              <Button className="inline-block mx-auto my-4">
               <Link to={"/addevent"}>Add Event</Link>
               </Button>
               </div>

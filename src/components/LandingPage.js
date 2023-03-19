@@ -32,8 +32,9 @@ const LandingPage = () => {
   
 
   return (
-    <div className='w-full h-screen bg-[#02062a]'>
-      <nav className="w-full  ">
+    <div className='bg-[#02062a] h-screen'>
+    <div className='w-full min-h-screen bg-[#02062a]'>
+      <nav className="w-full">
         <div className="justify-between lg:px-20 sm:px-2 mx-  md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -154,6 +155,7 @@ const LandingPage = () => {
           <img src="./LogoDashMasjid.png" alt="" />
         </div>
       </div>
+    </div>
     </div>
   )
 }
