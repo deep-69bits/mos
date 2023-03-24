@@ -188,11 +188,9 @@ const Events = () => {
               })}
              
               </div>
-        } 
-                );
-              }
-            })}
-          </div>
+       
+                
+          
         )}
         <div className="flex">
           <Button className="mx-auto my-4">
