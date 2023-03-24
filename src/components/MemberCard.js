@@ -16,8 +16,8 @@ function MemberCard() {
         all your dedication and truthfulness.
       </p>
       <div className="mt-3 flex w-full justify-evenly">
-          <Button>Delete</Button>
           <Button>Edit</Button>
+          <Button>Delete</Button>
       </div>
     </div>
   );
