@@ -26,7 +26,8 @@ import { async } from "@firebase/util";
 import { upload } from "@testing-library/user-event/dist/upload";
 import { Audio, FidgetSpinner, Watch } from 'react-loader-spinner'
 import { Link } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const UpdateDoc = () => {
   const [loading, setLoading] = useState(true);
 
@@ -61,7 +62,8 @@ const UpdateDoc = () => {
 
   const signout = () => {
     signOut(auth);
-    navigate("/");
+    toast("Signed out")
+    setTimeout(function(){ navigate("/")}, 2000);
   };
 
   const updatedoc = async (e) => {
@@ -102,7 +104,8 @@ const UpdateDoc = () => {
         DescriptionOfEvent: des,
         type: searchparams.get("type"),
       });
-      navigate("/events");
+      toast("Event updated out")
+      setTimeout(function(){ navigate("/events")}, 2000);
     }
   };
 
@@ -185,6 +188,7 @@ const UpdateDoc = () => {
           </div> :
           <div className="min-h-screen py-40 bg-[#02062a] ">
           <form className="w-1/2 m-auto">
+          <ToastContainer/>
           <h1 className="text-white text-2xl my-5 font-semibold">
           UPDATE EVENT
         </h1>
@@ -217,12 +221,15 @@ const UpdateDoc = () => {
           <br />
           <button
           className="sm:w-full my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl"
-          onClick={async () => {
+          onClick={async (e) => {
+            e.preventDefault()
             const db = await getFirestore(app);
             const auth = await getAuth(app);
             const user = await auth.currentUser;
-            navigate("/events");
+            toast("Event Deleted")
             await deleteDoc(doc(db, user.email, searchparams.get("id")));
+            // setTimeout(function(){ navigate("/events")}, 2000);
+            navigate('/events ')
           }}>
           Delete
           </button>

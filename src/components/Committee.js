@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut,onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase";
 import { getFirestore } from "firebase/firestore";
 import { Audio, FidgetSpinner, Watch } from "react-loader-spinner";
@@ -18,7 +18,8 @@ import { useNavigate } from "react-router-dom";
 import Card from "./Card";
 import Button from "./Button";
 import { Sidebar, SidebarItem } from "react-responsive-sidebar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Committee = () => {
 
   const [loading, setLoading] = useState(true);
@@ -28,7 +29,8 @@ const Committee = () => {
   const navigate = useNavigate();
   const signout = () => {
     signOut(auth);
-    navigate("/");
+    toast("Signed out")
+    setTimeout(function(){ navigate("/")}, 2000);
   };
   
 
@@ -96,14 +98,22 @@ const Committee = () => {
     const getevents = async () => {
       const db = await getFirestore(app);
       const auth = await getAuth(app);
-      const user = await auth.currentUser;
-      const eventss = await collection(db, user.email);
-      const q = query(collection(db, "cities"), where("type", "==", "event"));
-      const data = await getDocs(eventss);
-      data.forEach((doc) => {
-        setCommitiedata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      });
-      setLoading(false);
+      onAuthStateChanged(auth, (user) => {
+          if(user){
+             const retdata=async()=>{
+              const user = await auth.currentUser;
+              const eventss = await collection(db, user.email);
+              const data = await getDocs(eventss);
+              data.forEach((doc) => {
+                setCommitiedata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+              });
+              setLoading(false);
+             }
+             retdata( )
+          }
+      }
+      )
+      
     };
     getevents();
   }, []);

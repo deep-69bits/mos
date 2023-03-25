@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
 import { setDoc,doc,addDoc,collection } from 'firebase/firestore';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -37,7 +39,9 @@ const SignUp = () => {
 					  });
 				 }
 				 setuser()
-				 navigate('/')
+				 toast("Masjid Registerd");
+				 setTimeout(function(){navigate('/')}, 2000);
+				 
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -70,6 +74,7 @@ const SignUp = () => {
 		<div className="min-h-screen bg-[#02062a]   py-4 ">
 		<div className="lg:flex  sm:block lg:px-40  sm:px-5">
 		  <div className="w-2/3  mx-auto ">
+		  <ToastContainer />
 			<h1 className="text-white text-xl font-semibold">
 			  <img
 				src="./LogoDashMasjid.png"

@@ -15,6 +15,8 @@ import {
 } from "firebase/firestore";
 import { data } from "autoprefixer";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -27,7 +29,8 @@ const AddHadid = () => {
     const navigate = useNavigate();
     const signout = () => {
       signOut(auth);
-      navigate("/");
+      toast("Signed out")
+      setTimeout(function(){ navigate("/")}, 2000);
     };
 
 
@@ -103,11 +106,13 @@ const AddHadid = () => {
     setload(!load)
    }
    const submithadid= async ()=>{
-    const docref=  await addDoc(collection(db, user.email), {
+     const docref=  await addDoc(collection(db, user.email), {
           hadid: hadid,
           type: 'hadid'
       });
       console.log(docref)
+      toast("Hadid Added")
+      setTimeout(function(){ navigate("/hadid")}, 2000);
    }
 
   return (
@@ -115,6 +120,7 @@ const AddHadid = () => {
     <Sidebar content={items} background="#000000" backdrop={true}>
        
     <div className='flex flex-col justify-center items-center w-full lg:w-4/5 mt-40 m-auto '>
+    <ToastContainer />
     <input value={hadid} onChange={changehadid} type="text" className="text-black block  h-52 sm:w-full lg:w-2/3 my-20    rounded-3xl px-3 py-2 bg-gray-200 border-none"    />
     <button onClick={submithadid} className="lg:w-1/2 sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
     Add Hadid

@@ -18,7 +18,8 @@ import {
 import { data } from "autoprefixer";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Updatemember = () => {
     const [loading, setLoading] = useState(true);
     const [searchparams, setSearchParms] = useSearchParams();
@@ -28,7 +29,8 @@ const Updatemember = () => {
     const navigate = useNavigate();
     const signout = () => {
       signOut(auth);
-      navigate("/");
+      toast("Signed out")
+      setTimeout(function(){ navigate("/")}, 2000);
     };
   
     

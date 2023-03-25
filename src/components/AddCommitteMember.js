@@ -14,6 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { Sidebar, SidebarItem } from "react-responsive-sidebar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddCommitteMember = () => {
   const db = getFirestore(app);
@@ -26,7 +28,8 @@ const AddCommitteMember = () => {
   const [load, setLoad] = useState(true);
   const signout = () => {
     signOut(auth);
-    navigate("/");
+    toast("Signed out")
+    setTimeout(function(){ navigate("/")}, 2000);
   };
   const navigate = useNavigate();
   const changeName = (e) => {
@@ -48,6 +51,8 @@ const AddCommitteMember = () => {
       type: 'member'
   });
   console.log(docref)
+  toast("Member  Added")
+  setTimeout(function(){ navigate("/committeemembers")}, 2000);
   };
 
 
@@ -115,6 +120,7 @@ const AddCommitteMember = () => {
     <Sidebar content={items} background="#000000" backdrop={true}>
     
     <div className="flex justify-center items-center h-screen w-full ">
+    <ToastContainer/>
     <div className="w-1/2  p-8 m-4">
     <h1 className="text-white text-2xl my-5 font-semibold">
     ADD MEMBER

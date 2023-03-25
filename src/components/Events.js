@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase";
 import { getFirestore } from "firebase/firestore";
 import { Audio, FidgetSpinner, Watch } from "react-loader-spinner";
@@ -18,7 +18,8 @@ import { useNavigate } from "react-router-dom";
 import Card from "./Card";
 import Button from "./Button";
 import { Sidebar, SidebarItem } from "react-responsive-sidebar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Events = () => {
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +29,8 @@ const Events = () => {
   const navigate = useNavigate();
   const signout = () => {
     signOut(auth);
-    navigate("/");
+    toast("Signed out")
+    setTimeout(function(){ navigate("/")}, 2000);
   };
   const items = [
     <SidebarItem>
@@ -96,14 +98,25 @@ const Events = () => {
     const getevents = async () => {
       const db = await getFirestore(app);
       const auth = await getAuth(app);
-      const user = await auth.currentUser;
-      const eventss = await collection(db, user.email);
-      const q = query(collection(db, "cities"), where("type", "==", "event"));
-      const data = await getDocs(eventss);
-      data.forEach((doc) => {
-        setEventdata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          const retdata=async()=>{
+            const user = await auth.currentUser;
+            const eventss = await collection(db, user.email);
+            ;
+            const data = await getDocs(eventss);
+            data.forEach((doc) => {
+              setEventdata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            });
+            setLoading(false);
+          }
+          retdata()
+        } else {
+         
+        }
       });
-      setLoading(false);
+     
     };
     getevents();
   }, []);
@@ -159,9 +172,7 @@ const Events = () => {
           
         )}
         <div className="flex">
-          <Button className="mx-auto my-4">
-            <Link to={"/addevent"}>Add Event</Link>
-          </Button>
+         
         </div>
 
       </Sidebar>

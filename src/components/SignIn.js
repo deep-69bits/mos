@@ -3,6 +3,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const SignIn = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -16,9 +19,12 @@ const SignIn = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate("/");
+        toast("Signed In")
+        setTimeout(function(){navigate("/")}, 2000);
+        
       })
       .catch((error) => {
+        toast("Wrong Email or Password")
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("password didnt matched");
@@ -37,6 +43,7 @@ const SignIn = () => {
     <div className="min-h-screen bg-[#02062a]   py-4 ">
       <div className="lg:flex  sm:block lg:px-40  sm:px-5">
         <div className="w-2/3  mx-auto ">
+        <ToastContainer />
           <h1 className="text-white text-xl font-semibold">
             <img
               src="./LogoDashMasjid.png"

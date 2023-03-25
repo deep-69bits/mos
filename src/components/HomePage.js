@@ -8,7 +8,8 @@ import { Sidebar, SidebarItem } from "react-responsive-sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Audio,FidgetSpinner,Watch } from 'react-loader-spinner'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +20,8 @@ const HomePage = () => {
   const navigate = useNavigate();
   const signout = () => {
     signOut(auth);
-    navigate("/");
+    toast("Signed out")
+    setTimeout(function(){ navigate("/")}, 2000);
   };
   
 
