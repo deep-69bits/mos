@@ -9,13 +9,15 @@ import HomePage from "./components/HomePage";
 import Events from "./components/Events";
 import AddEvent from "./components/AddEvent";
 import Committee from "./components/Committee";
-import AddCommitteeMember from "./components/AddCommitteeMember";
+
 import UpdateDoc from "./components/UpdateDoc";
 import LandingPage from "./components/LandingPage";
 import Timings from "./components/Display/Timings";
 import Hadid from "./components/Hadid";
 import AddHadid from "./components/AddHadid";
 import Updatehadid from "./components/Updatehadid";
+import AddCommitteMember from "./components/AddCommitteMember";
+import Updatemember from "./components/Updatemember";
 
 function App() {
   const auth = getAuth(app);
@@ -44,12 +46,13 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/addevent" element={<AddEvent />} />
           <Route path="/committeemembers" element={<Committee />} />
-          <Route path="/AddCommitteeMember" element={<AddCommitteeMember />} />
           <Route path="/updatedoc" element={<UpdateDoc />} />
           <Route path="/masjid" element={<Timings />} />
           <Route path="/hadid" element={<Hadid />} />
           <Route path="/addhadid" element={<AddHadid />} />
           <Route path="/updatehadid" element={<Updatehadid />} />
+          <Route path="/addcommitie" element={<AddCommitteMember />} />
+          <Route path="/updatemember" element={<Updatemember />} />
         </Routes>
       </BrowserRouter>
     </div>

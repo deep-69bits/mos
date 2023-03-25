@@ -1,35 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
-import { getAuth, signOut } from "firebase/auth";
 import { app } from "../firebase";
 import { getFirestore } from "firebase/firestore";
-import { Audio, FidgetSpinner, Watch } from "react-loader-spinner";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
-import { data } from "autoprefixer";
-import { Link } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import Card from "./Card";
-import Button from "./Button";
+import {
+  getDownloadURL,
+  getStorage,
+  ref as storageRef,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
 import { Sidebar, SidebarItem } from "react-responsive-sidebar";
 
-const Events = () => {
-  const [loading, setLoading] = useState(true);
-
+const AddCommitteMember = () => {
   const db = getFirestore(app);
   const auth = getAuth(app);
+  const storage = getStorage(app);
   const user = auth.currentUser;
-  const navigate = useNavigate();
+
+  const [name, setName] = useState(null);
+  const [memberposition, setPosition] = useState(null);
+  const [load, setLoad] = useState(true);
   const signout = () => {
     signOut(auth);
     navigate("/");
   };
+  const navigate = useNavigate();
+  const changeName = (e) => {
+    setName(e.target.value);
+    setLoad(!load);
+   
+  };
+  const changeposition=(e)=>{
+    
+     setPosition(e.target.value)
+     setLoad(!load)
+     console.log(memberposition)
+  }
+ 
+  const submitevent = async () => {
+    const docref=  await addDoc(collection(db, user.email), {
+      name: name,
+      position:memberposition,
+      type: 'member'
+  });
+  console.log(docref)
+  };
+
+
   const items = [
     <SidebarItem>
       <Link to={"/"}> <img src="./LogoDashMasjid.png" className="w-[50px] inline-block" alt="" /> Dashboard</Link>
@@ -89,84 +110,62 @@ const Events = () => {
     </SidebarItem>,
   ];
 
-
-  const [eventdata, setEventdata] = useState([]);
-
-  useEffect(() => {
-    const getevents = async () => {
-      const db = await getFirestore(app);
-      const auth = await getAuth(app);
-      const user = await auth.currentUser;
-      const eventss = await collection(db, user.email);
-      const q = query(collection(db, "cities"), where("type", "==", "event"));
-      const data = await getDocs(eventss);
-      data.forEach((doc) => {
-        setEventdata(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      });
-      setLoading(false);
-    };
-    getevents();
-  }, []);
-
   return (
-    <div className="bg-[#02062a] min-h-screen">
-      <Sidebar content={items} background="#000000" backdrop={true}>
-        {loading ? (
-          <div className="flex flex-col justify-center items-center my-auto h-full">
-            <Watch
-              height="80"
-              width="80"
-              radius="48"
-              color="#ffffff"
-              ariaLabel="watch-loading"
-              wrapperStyle={{}}
-              wrapperClassName=""
-              visible={true}
-            />
-          </div>
-        ) : (
-          <div className="flex gap-3 flex-wrap">
-            {eventdata.map((item, index) => {
-              if (item?.type == "event") {
-                return (
-                  <Card className="lg:min-w-[30%] lg:max-w-[30%] max-w-[90%] min-w-[90%]">
-                    {item.image && (
-                      <img
-                        src={item.image}
-                        alt=""
-                        className="object-cover pb-4 rounded-t-3xl"
-                      />
-                    )}
-                    <h1 className="text-3xl">{item.NameOfEvent}</h1>
-                    <h1 className="text-lg text-gray-500 font-light">
-                      {item.DescriptionOfEvent}
-                    </h1>
-                    {/* <h1>{item.type}</h1> */}
-                    <Button className="lg:w-1/2 sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
-                      <Link to={`/updatedoc?type=event&&id=${item.id}`}>
-                        Update
-                      </Link>
-                    </Button>
-                  </Card>
+    <div className="min-h-screen bg-[#02062a]">
+    <Sidebar content={items} background="#000000" backdrop={true}>
+    
+    <div className="flex justify-center items-center h-screen w-full ">
+    <div className="w-1/2  p-8 m-4">
+    <h1 className="text-white text-2xl my-5 font-semibold">
+    ADD MEMBER
+  </h1>
+      <div className="flex flex-col mb-4 text-black">
+        <label
+        className="text-[10px] font-bold text-white"
+          for="first_name">
+          Name of member
+        </label>
+        <input
+          onChange={changeName}
+          required
+          placeholder="Name of Member"
+          className="text-black block my-3 sm:w-full lg:w-1/2 rounded-3xl px-3 py-2 bg-gray-200 border-none"
+          type="text"
+          name="Nameofmember"
+          id="first_name "
+        />
+      </div>
 
-                  );
-                }
-              })}
-             
-              </div>
-       
-                
-          
-        )}
-        <div className="flex">
-          <Button className="mx-auto my-4">
-            <Link to={"/addevent"}>Add Event</Link>
-          </Button>
-        </div>
-
-      </Sidebar>
+      <div className="flex flex-col mb-4 text-black">
+        <label
+        className="text-[10px] font-bold text-white"
+          for="first_name">
+          position of member
+        </label>
+        <input
+          onChange={changeposition}
+          required
+          placeholder="Position of Member"
+          className="text-black block my-3 sm:w-full lg:w-1/2 rounded-3xl px-3 py-2 bg-gray-200 border-none"
+          type="text"
+          name="positionofmember"
+          id="first_name "
+        />
+      </div>
+      
+     
+      <button
+        onClick={submitevent}
+        className="sm:w-full my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl"
+        type="submit">
+        Add Member
+      </button>
     </div>
-  );
-};
+  </div>
 
-export default Events;
+    </Sidebar>
+    </div>
+  )
+}
+
+export default AddCommitteMember
