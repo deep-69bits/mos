@@ -152,27 +152,22 @@ const Timings = () => {
             }
             </div>
         </div>
+        
+        {
+          dataa.map((item,index)=>{
+            if(item.type==="event"){
+              return(
+                <div>
+                   <h3>{item.DescriptionOfEvent}</h3>
+                   <h3>{item.NameOfEvent}</h3>
+                </div>
+              )
+            }
+          })
+        }
+
         <div>
-          <div className='h-screen w-full bg-[#02062a]'>
-            <h1>EVENTS</h1>
-            <div className='grid grid-flow-row grid-cols-3'>
-              {
-                dataa.map((item) => {
-                  return (
-                    <div>
-                      <img src={item.image} alt="" />
-                      {item.NameOfEvent}
-                      <br />
-                      {item.DescriptionOfEvent}
-                    </div>
-                  )
-                })
-              }
-            </div>
-          </div>
-        </div>
-        <div>
-          <h1>Hadid</h1>
+        <h1>Hadid</h1>
           {
 
             dataa.map((item) => {
