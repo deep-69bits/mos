@@ -73,6 +73,13 @@ const Timings = () => {
     "Friday",
     "Saturday",
   ];
+  if(date.toLocaleTimeString()==Asr || date.toLocaleTimeString()==Dhuhr  ){
+    return(
+      <div className='text-white min-h-screen bg-[#02062a] w-full'>
+           <h1 className='text-white text-5xl font-semibold text-center py-[20%]'>Prayer Going On</h1>
+      </div>
+    )
+  }
   return (
     <div className='text-white min-h-screen bg-[#02062a] w-full'>
       <ReactSimplyCarousel
@@ -83,13 +90,12 @@ const Timings = () => {
         autoplay={true}
         infinite={true}
         autoplayDelay={3000}
-        showSlidesBeforeInit={false}
+        
         forwardBtnProps={{
           style: {
-            background: 'black',
-            zIndex: 1000,
-            border: 'none',
             marginTop: '20%',
+            background: 'black',
+            border: 'none',
             borderRadius: '50%',
             color: 'white',
             cursor: 'pointer',
