@@ -42,7 +42,7 @@ const LandingPage = () => {
                       className="inline-block mx-2 w-[50px]"
                       alt=""
                     />
-                    <Link to={"/"}>DASHMASJID</Link>
+                    <Link  className="text-[#E1C49A]" to={"/"}>DASHMASJID</Link>
                   </h2>
                 </a>
                 <div className="md:hidden">
@@ -62,7 +62,7 @@ const LandingPage = () => {
                         />
                       </svg>
                     ) : (
-                      <div className="text-white px-3 py-2 rounded-md bg-black mx-5">
+                      <div className="text-[#E1C49A] px-3 py-2 rounded-md bg-black mx-5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-6 h-6 text-white inline-block"
@@ -88,7 +88,7 @@ const LandingPage = () => {
                 className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  ${
                   navbar ? "block" : "hidden"
                 }`}>
-                <ul className="items-center justify-center space-y-8 my-8 md:flex md:space-x-6 md:space-y-0">
+                <ul className="items-center translate-x-[500px] justify-center space-y-8 my-8 md:flex md:space-x-6 md:space-y-0">
                   <li className="text-black px-5 bg-blue-600  rounded-md first: py-2 ">
                     <Link className="text-white font-bold" to={"/signin"}>
                       SIGN IN
@@ -107,11 +107,11 @@ const LandingPage = () => {
         </nav>
         <div className="grid grid-flow-row lg:grid-cols-2 sm:grid-cols-1 mx-40 my-40 justify-between px-10">
           <div>
-            <h1 className="text-white font-bold text-7xl">
+            <h1 className="text-[#E1C49A] font-bold text-7xl">
               {" "}
               The Solution to all <br /> your problems
             </h1>
-            <h2 className="text-white my-5 text-xl">
+            <h2 className="text-[#E1C49A] my-5 text-xl">
               Elegent-designed and user-friendly mosque dashboard. <br />{" "}
               Suitable to any type of mosque and can be acces anywhere
             </h2>
@@ -135,7 +135,7 @@ const LandingPage = () => {
               <div className="w-2/3">
                 <label
                   htmlFor="countries"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-[#E1C49A]">
                   Select an option
                 </label>
                 <select
@@ -146,10 +146,10 @@ const LandingPage = () => {
                     }
                   }}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option selected>Choose a Masjid</option>
+                  <option selected className="text-[#E1C49A]">Choose a Masjid</option>
                   {masjids.map((item, index) => {
                     return (
-                      <option value={item.email}>{item.MasjidName}</option>
+                      <option className="text-[#E1C49A]" value={item.email}>{item.MasjidName}</option>
                     );
                   })}
                 </select>
@@ -157,7 +157,7 @@ const LandingPage = () => {
             )}
           </div>
           <div>
-            <img src="./LogoDashMasjid.png" alt="" />
+            <img  className="mx-auto" src="./LogoDashMasjid.png" alt="" />
           </div>
         </div>
       </div>

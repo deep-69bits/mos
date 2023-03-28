@@ -298,10 +298,22 @@ const Timings = () => {
                 </span>
                 </h1>
                   <h1 className='text-4xl py-20 font-semibold '>Hadid of the day</h1>
-                   <img  className='m-auto w-2/3 mt-20 rounded-xl h-[400px]' src={item.image} alt="" />
-                  <h2 className='py-10 text-xl font-semibold'>
+                  {
+                    item.image?
+                    <img  className='m-auto w-2/3 mt-20 rounded-xl h-[400px]' src={item.image} alt="" />
+                    :
+                    ""
+                  }
+                  {
+                    item.image?
+                    <h2 className='py-10 text-4xl   px-40 text-center  font-semibold'>
                     {item.hadid}
-                  </h2>
+                    </h2>:
+                    <h2 className=' text-4xl py-40  px-40 text-center  font-semibold'>
+                    {item.hadid}
+                    </h2>
+
+                  }
                 </div>
               )
             }
@@ -334,8 +346,8 @@ const Timings = () => {
                 if (item.type === "member") {
                   return (
                     <div className='bg-white transition-all my-5 duration-500 hover:scale-105 rounded-lg text-black '>
-                      <h1 className='text-2xl font-bold my-2'>{item.name}</h1>
-                      <h3 className='text-2xl font-semibold my-2'>{item.position}</h3>
+                      <h1 className='text-2xl text-[#E1C49A] font-bold my-2'>{item.name}</h1>
+                      <h3 className='text-2xl text-[#E1C49A] font-semibold my-2'>{item.position}</h3>
                     </div>
                   )
                 }

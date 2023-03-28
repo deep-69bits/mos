@@ -75,7 +75,7 @@ const SignUp = () => {
 		<div className="lg:flex  sm:block lg:px-40  sm:px-5">
 		  <div className="w-2/3  mx-auto ">
 		  <ToastContainer />
-			<h1 className="text-white text-xl font-semibold">
+			<h1 className="text-[#E1C49A] text-xl font-semibold">
 			  <img
 				src="./LogoDashMasjid.png"
 				alt=""
@@ -85,7 +85,7 @@ const SignUp = () => {
 			  DASHMASJID
 			  </Link>
 			</h1>
-			<div className="justify-center text-white  mt-16">
+			<div className="justify-center text-[#E1C49A] mt-16">
 			  <h1 className="text-3xl font-bold">Welcome, to DashMasjid</h1>
 			  <h1 className="my-2 font-bold mb-10 mt-3">
 				Please enter your details
@@ -159,7 +159,7 @@ const SignUp = () => {
 			  <h2 className="text-gray-300 text-center lg:w-1/2 sm:w-full">
 				Already have an account? 
 				<span> </span>
-				<Link className="text-white font-bold" to={"/signin"}>
+				<Link className="text-[#E1C49A] font-bold" to={"/signin"}>
 				   Sign in
 				</Link>
 			  </h2>
@@ -167,7 +167,7 @@ const SignUp = () => {
 		  </div>
   
 		  <div className="mx-auto lg:w-1/2 sm:w-0 ">
-			<img src="./LogoDashMasjid.png" className="lg:w-full sm:w-0" alt="" />
+			<img src="./LogoDashMasjid.png" className="lg:w-full  mx-auto py-32 sm:w-0" alt="" />
 		  </div>
 		</div>
 	  </div>
