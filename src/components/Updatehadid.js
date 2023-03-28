@@ -95,6 +95,7 @@ const Updatehadid = () => {
 
 
     const [hadiddata, setHadiddata] = useState([]);
+    const [image, setimage] = useState();
   
     const [hadid,sethadid]=useState('')
      const [load,setload]=useState(true)
@@ -112,6 +113,7 @@ const Updatehadid = () => {
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
           sethadid(docSnap.data().hadid)
+          setimage(docSnap.data().image)
           setLoading(false)
         }
         else {
@@ -126,6 +128,7 @@ const Updatehadid = () => {
      const upadateform=()=>{
       setDoc(doc(db, user.email, searchparams.get("id")), {
         hadid: hadid,
+        image: image,
         type: "hadid",
       });
      }

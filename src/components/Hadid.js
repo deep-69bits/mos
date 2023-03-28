@@ -119,7 +119,7 @@ const Hadid = () => {
       }, []);
 
   return (
-    <div className="bg-[#02062a] min-h-screen">
+    <div className="bg-[#02062a]   min-h-screen">
     <Sidebar content={items} background="#000000" backdrop={true}>
      
     { 
@@ -140,6 +140,7 @@ const Hadid = () => {
           if (item?.type == "hadid") {
               return (
                 <div className='m-auto text-center mt-52 w-1/2'>
+                 <img src={item.image} alt="" />
                 <h1 className='text-7xl text-gray-300 my-40'  >{item.hadid}</h1>
                  <button className=" sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
                  <Link to={`/updatehadid?type=hadid&&id=${item.id}`}>
