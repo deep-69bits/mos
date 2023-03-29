@@ -118,9 +118,9 @@ const Committee = () => {
     getevents();
   }, []);
   return (
-    <div className="min-h-screen bg-[#02062a] text-[#E1C49A]">
-      <Sidebar content={items} background="#000000" backdrop={true}>
-        <div className="grid grid-flow-row grid-cols-2 gap-x-20 px-40 py-40 ">
+    <div className="min-h-screen   bg-[#02062a] text-[#E1C49A]">
+      <Sidebar content={items}  background="#000000" backdrop={true}>
+        <div className="grid grid-flow-row  grid-cols-2 gap-y-10 gap-x-20 px-40 py-40 ">
 
           {
             commitiedata.map((item, index) => {

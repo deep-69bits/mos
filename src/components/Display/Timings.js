@@ -203,7 +203,7 @@ const Timings = () => {
         speed={400}
         easing="linear"
       >
-       <div className='h-screen w-[1700px] text-center grid grid-cols-2'>
+       <div className='h-screen w-[1400px] text-center grid grid-cols-2'>
           
        <div>
 
@@ -225,14 +225,14 @@ const Timings = () => {
          </span>
        </span>
        </h1>
-        <img className='my-52' src="./LogoDashMasjid.png" alt="" />
+        <img className='my-52 ml-20' src="./LogoDashMasjid.png" alt="" />
 
 
        </div>
 
    
 
-       <div className=' gap-y-10 text-4xl px-20 py-40 text-[#E1C49A]'>
+       <div className=' gap-y-10 text-5xl mr-20 py-40 text-[#E1C49A]'>
           <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Fajr</span> <span>{Fajr.split("",5)}</span></h1>
           <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Dhuhr</span> <span>{Dhuhr.split("",5)}</span></h1>
           <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Asr</span> <span>{Asr.split("",5)}</span></h1>
@@ -247,7 +247,7 @@ const Timings = () => {
           dataa.map((item, index) => {
             if (item.type === "event") {
               return (
-                <div className='h-screen w-[1700px] text-center'>
+                <div className='h-screen w-[1400px] text-center'>
                 <h1 className=" block float-right text-left absolute m-8 mx-20  ">
                 <span className="text-7xl font-bold">{date.toLocaleTimeString()}</span>
                 <br />
@@ -266,7 +266,7 @@ const Timings = () => {
                 </span>
                 </h1>
                   <h1 className='text-4xl py-20 font-semibold'>{item.NameOfEvent}</h1>
-                  <img className='m-auto w-2/3 h-[400px] mt-20 rounded-xl' src={item.image} alt="" />
+                  <img className='m-auto  max-w-2/3  max-h-[400px] mt-20 rounded-xl' src={item.image} alt="" />
                   <h1 className='py-10 text-xl font-semibold'>{item.DescriptionOfEvent}</h1>
                 </div>
               )
@@ -279,7 +279,7 @@ const Timings = () => {
           dataa.map((item, index) => {
             if (item.type === "hadid") {
               return (
-                <div className='h-screen  w-[1700px] text-center   text-xl '>
+                <div className='h-screen  w-[1400px] text-center   text-xl '>
                 <h1 className=" block float-right text-left absolute m-8 mx-20  ">
                 <span className="text-7xl font-bold">{date.toLocaleTimeString()}</span>
                 <br />
@@ -337,7 +337,7 @@ const Timings = () => {
           </span>
         </span>
         </h1>
-        <div className='h-screen w-[1700px] text-center text-xl px-40 '>
+        <div className='h-screen w-[1400px] text-center text-xl px-40 '>
        
           <h1 className='text-4xl py-20 font-semibold'>Member of the day</h1>
           <div className='grid grid-flow-row grid-cols-2 gap-x-20 gap-y-10' >
@@ -346,8 +346,8 @@ const Timings = () => {
                 if (item.type === "member") {
                   return (
                     <div className='bg-white transition-all my-5 duration-500 hover:scale-105 rounded-lg text-black '>
-                      <h1 className='text-2xl text-[#E1C49A] font-bold my-2'>{item.name}</h1>
-                      <h3 className='text-2xl text-[#E1C49A] font-semibold my-2'>{item.position}</h3>
+                      <h1 className='text-2xl text-black font-bold my-2'>{item.name}</h1>
+                      <h3 className='text-2xl text-black font-semibold my-2'>{item.position}</h3>
                     </div>
                   )
                 }
