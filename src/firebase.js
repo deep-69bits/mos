@@ -5,19 +5,20 @@ import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyDZr1Q7ZN0RXzF4yM8lTFLLsKRMP0_TZKw",
+  apiKey: "AIzaSyCxXHF_PDMZrsHGSLbe6szFwQ0Gle_ZJoU",
 
-  authDomain: "masjids-1deec.firebaseapp.com",
+  authDomain: "dashmasjid.firebaseapp.com",
 
-  projectId: "masjids-1deec",
+  projectId: "dashmasjid",
 
-  storageBucket: "masjids-1deec.appspot.com",
+  storageBucket: "dashmasjid.appspot.com",
 
-  messagingSenderId: "725794385604",
+  messagingSenderId: "277259182510",
 
-  appId: "1:725794385604:web:45ca09a7891083512de391",
+  appId: "1:277259182510:web:297622715e1cae88a3283f",
 
-  measurementId: "G-Y38TNSNC7K"
+  measurementId: "G-YKZ71JTXPP"
+
 
 };
 
