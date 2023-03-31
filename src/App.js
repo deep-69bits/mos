@@ -18,7 +18,7 @@ import AddHadid from "./components/AddHadid";
 import Updatehadid from "./components/Updatehadid";
 import AddCommitteMember from "./components/AddCommitteMember";
 import Updatemember from "./components/Updatemember";
-
+import ForgotPasswrod from "./components/ForgotPasswrod";
 function App() {
   const auth = getAuth(app);
   const [logged, setLogged] = useState(false);
@@ -53,6 +53,8 @@ function App() {
           <Route path="/updatehadid" element={<Updatehadid />} />
           <Route path="/addcommitie" element={<AddCommitteMember />} />
           <Route path="/updatemember" element={<Updatemember />} />
+          <Route path="/forgot-password" element={<ForgotPasswrod />} />
+
         </Routes>
       </BrowserRouter>
     </div>
