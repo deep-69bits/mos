@@ -8,7 +8,11 @@ import { Auth, getAuth } from 'firebase/auth';
 import { collection, getFirestore } from 'firebase/firestore';
 import { getDocs } from 'firebase/firestore';
 import { Audio, FidgetSpinner, Watch } from 'react-loader-spinner'
-
+import { Autoplay, Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 const Timings = () => {
   const [searchparams, setSearchParms] = useSearchParams();
   const [email, setEmail] = useState(searchparams.get("email"))
@@ -149,64 +153,27 @@ const Timings = () => {
   var hijriDay = Math.floor((hijriDate - Math.floor(hijriDate)) * 354.36707 % 29.530589)
   return (
     <div className=' min-h-screen bg-[#02062a] text-[#E1C49A] w-full'>
-      <ReactSimplyCarousel
-        activeSlideIndex={activeSlideIndex}
-        onRequestChange={setActiveSlideIndex}
-        itemsToShow={1}
-        itemsToScroll={1}
-        autoplay={true}
-        infinite={true}
-        autoplayDelay={3000}
-         forwardBtnProps={{
-          style: {
-            background: 'black',
-            zIndex: 1000,
-            border: 'none',
-            marginTop: '20%',
-            borderRadius: '50%',
-            color: '#E1C49A',
-            cursor: 'pointer',
-            fontSize: '30px',
-            fontWeight:800,
-            height: 40,
-            lineHeight: 1,
-            textAlign: 'center',
-            width: 40,
-          },
-          children: <span>{`>`}</span>,
-         }}
-        backwardBtnProps={{
-          style: {
-            background: 'black',
-            zIndex: 1000,
-            border: 'none',
-            marginTop: '20%',
-            borderRadius: '50%',
-            color: '#E1C49A',
-            cursor: 'pointer',
-            fontSize: '30px',
-            fontWeight:800,
-            height: 40,
-            lineHeight: 1,
-            textAlign: 'center',
-            width: 40,
-          },
-          children: <span>{`<`}</span>,
-        }}
-        responsiveProps={[
-          {
-            itemsToShow: 1,
-            itemsToScroll: 1,
-            minWidth: 768,
-          },
-        ]}
-        speed={400}
-        easing="linear"
-      >
-       <div className='h-screen w-[1400px] text-center grid grid-cols-2'>
+    <Swiper
+    spaceBetween={30}
+    centeredSlides={true}
+    slidesPerView={1}
+    autoplay={{
+      delay: 4500,
+      disableOnInteraction: false,
+    }}
+    pagination={{
+      clickable: true,
+    }}
+    navigation={true}
+    loop={true}
+    modules={[Autoplay, Pagination, Navigation]}
+    className="mySwiper"
+  >
+    
+       <SwiperSlide >
           
+       <div className=' max-h-screen text-center grid grid-cols-2'>
        <div>
-
        
        <h1 className=" block float-right text-left absolute m-8 mx-20  ">
        <span className="text-7xl font-bold">{date.toLocaleTimeString()}</span>
@@ -230,24 +197,25 @@ const Timings = () => {
 
        </div>
 
-   
-
-       <div className=' gap-y-10 text-5xl mr-20 py-40 text-[#E1C49A]'>
-          <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Fajr</span> <span>{Fajr.split("",5)}</span></h1>
-          <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Dhuhr</span> <span>{Dhuhr.split("",5)}</span></h1>
-          <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Asr</span> <span>{Asr.split("",5)}</span></h1>
-          <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Maghrib</span> <span>{Maghrib.split("",5)}</span></h1>
-          <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Isha</span> <span>{Isha.split("",5)}</span></h1>
+      
+       <div className='mx-20'>
+       
+       <div className=' mt-52 text-4xl font-semibold mr-20  text-[#E1C49A]'>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Fajr</span> <span>{Fajr.split("",5)}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Dhuhr</span> <span>{Dhuhr.split("",5)}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Asr</span> <span>{Asr.split("",5)}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Maghrib</span> <span>{Maghrib.split("",5)}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Isha</span> <span>{Isha.split("",5)}</span></h1>
+       </div>
        </div>
      
-
-
-       </div>
+      </div>
+       </SwiperSlide>
         {
           dataa.map((item, index) => {
             if (item.type === "event") {
               return (
-                <div className='h-screen w-[1400px] text-center'>
+                <SwiperSlide className=' max-h-screen text-center'>
                 <h1 className=" block float-right text-left absolute m-8 mx-20  ">
                 <span className="text-7xl font-bold">{date.toLocaleTimeString()}</span>
                 <br />
@@ -268,7 +236,7 @@ const Timings = () => {
                   <h1 className='text-4xl py-20 font-semibold'>{item.NameOfEvent}</h1>
                   <img className='m-auto  max-w-2/3  max-h-[400px] mt-20 rounded-xl' src={item.image} alt="" />
                   <h1 className='py-10 text-xl font-semibold'>{item.DescriptionOfEvent}</h1>
-                </div>
+                </SwiperSlide>
               )
             }
           })
@@ -279,7 +247,7 @@ const Timings = () => {
           dataa.map((item, index) => {
             if (item.type === "hadid") {
               return (
-                <div className='h-screen  w-[1400px] text-center   text-xl '>
+                <SwiperSlide className='max-h-screen   text-center   text-xl '>
                 <h1 className=" block float-right text-left absolute m-8 mx-20  ">
                 <span className="text-7xl font-bold">{date.toLocaleTimeString()}</span>
                 <br />
@@ -314,12 +282,12 @@ const Timings = () => {
                     </h2>
 
                   }
-                </div>
+                </SwiperSlide>
               )
             }
           })
         }
-        <div>
+        <SwiperSlide className='max-h-screen'>
         <h1 className=" block float-right text-left absolute m-8 mx-20  ">
         <span className="text-7xl font-bold">{date.toLocaleTimeString()}</span>
         <br />
@@ -337,7 +305,7 @@ const Timings = () => {
           </span>
         </span>
         </h1>
-        <div className='h-screen w-[1400px] text-center text-xl px-40 '>
+        <div className='  text-center text-xl px-40 '>
        
           <h1 className='text-4xl py-20 font-semibold'>Member of the day</h1>
           <div className='grid grid-flow-row grid-cols-2 gap-x-20 gap-y-10' >
@@ -355,8 +323,8 @@ const Timings = () => {
             }
           </div>
         </div>
-        </div>
-      </ReactSimplyCarousel>
+        </SwiperSlide>
+      </Swiper>
     </div>
   )
 }
