@@ -343,13 +343,13 @@ const Timings = () => {
                   <h1 className='text-4xl py-20 font-semibold '>Hadid of the day</h1>
                   {
                     item.image?
-                    <img  className='m-auto w-2/3 mt-20 rounded-xl h-[400px]' src={item.image} alt="" />
+                    <img  className='m-auto max-w-2/3 mt-5 rounded-xl h-[400px]' src={item.image} alt="" />
                     :
                     ""
                   }
                   {
                     item.image?
-                    <h2 className='py-10 text-4xl   px-40 text-center  font-semibold'>
+                    <h2 className='py-5 text-4xl   px-40 text-center  font-semibold'>
                     {item.hadid}
                     </h2>:
                     <h2 className=' text-4xl py-40  px-40 text-center  font-semibold'>
