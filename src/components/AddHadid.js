@@ -171,7 +171,18 @@ const AddHadid = () => {
       <Sidebar content={items} background="#000000" backdrop={true}>
 
         <div className='flex flex-col justify-center items-center w-full lg:w-4/5 mt-40 m-auto '>
-          <ToastContainer />
+        <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
           <input value={hadid} onChange={changehadid} type="text" className="text-black block  h-52 sm:w-full lg:w-2/3 my-20    rounded-3xl px-3 py-2 bg-gray-200 border-none" />
           <div className="flex flex-col mb-4">
             <label className="text-[10px] font-bold text-[#E1C49A]" for="image">

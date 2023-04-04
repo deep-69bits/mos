@@ -18,6 +18,7 @@ const SignUp = () => {
 	 const [confirmpassword,setConfirmPassword]=useState(null)
 	  const [load,setLoad]=useState(true);
 	  const [username,setUsername]=useState(null)
+	  const [region,setRegion]=useState('gombak')
 	 const auth = getAuth(app);
 	 
 	const signup=()=>{
@@ -35,7 +36,8 @@ const SignUp = () => {
 					let docRef = await addDoc(collection(db, "Users"), {
 						email: user.email,
 						MasjidName: masjidname,
-						Username: username
+						Username: username,
+						region: region
 					  });
 				 }
 				 setuser()
@@ -69,13 +71,17 @@ const SignUp = () => {
 			setUsername(e.target.value)
 			setLoad(!load)
 		}
-	
+	    const changeregion=(e)=>{
+			setRegion(e.target.value)
+			setLoad(!load)
+			console.log(region)
+		}
 	return (
 		<div className="min-h-screen bg-[#02062a]   py-4 ">
 		<div className="lg:flex  sm:block lg:px-40  sm:px-5">
 		  <div className="w-2/3  mx-auto ">
 		  <ToastContainer />
-			<h1 className="text-[#E1C49A] text-xl font-semibold">
+			<h1 className="text-white text-xl font-semibold">
 			  <img
 				src="./LogoDashMasjid.png"
 				alt=""
@@ -85,7 +91,7 @@ const SignUp = () => {
 			  DASHMASJID
 			  </Link>
 			</h1>
-			<div className="justify-center text-[#E1C49A] mt-16">
+			<div className="justify-center text-white mt-16">
 			  <h1 className="text-3xl font-bold">Welcome, to DashMasjid</h1>
 			  <h1 className="my-2 font-bold mb-10 mt-3">
 				Please enter your details
@@ -128,6 +134,23 @@ const SignUp = () => {
 				id=""
 			  />
 			  <label htmlFor="email" className="text-[10px] font-bold">
+			  Region
+			</label>
+			  <select onChange={changeregion} className='text-black block my-3 sm:w-full lg:w-1/2 rounded-3xl px-3 py-2 bg-gray-200 border-none'>
+			   <option value="gombak" selected>Gombak</option>
+			   <option value="petaling" >Petaling</option>
+			   <option value="sepang" >Sepang</option>
+			   <option value="hulu langat" >Hulu Langat</option>
+			   <option value="Hulu Selangor" >Hulu Selangor</option>
+			   <option value="s. alam" >S. Alam</option>
+			   <option value="kuala selangor" >Kuala Selangor</option>
+			   <option value="sabak bernam" >Sabak Bernam</option>
+			   <option value="klang" >Klang</option>
+			   <option value="kuala langat" >Luala Langat</option>
+			  </select>
+			  
+			   
+			  <label htmlFor="email" className="text-[10px] font-bold">
 				PASSWORD
 			  </label>
 			  <input
@@ -151,6 +174,8 @@ const SignUp = () => {
 				className="text-black block my-3 sm:w-full lg:w-1/2 rounded-3xl px-3 py-2 bg-gray-200 border-none"
 				id=""
 			  />
+
+
 			  <button
 				onClick={signup}
 				className="lg:w-1/2 sm:w-full my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
@@ -159,7 +184,7 @@ const SignUp = () => {
 			  <h2 className="text-gray-300 text-center lg:w-1/2 sm:w-full">
 				Already have an account? 
 				<span> </span>
-				<Link className="text-[#E1C49A] font-bold" to={"/signin"}>
+				<Link className="text-white font-bold" to={"/signin"}>
 				   Sign in
 				</Link>
 			  </h2>
@@ -167,7 +192,7 @@ const SignUp = () => {
 		  </div>
   
 		  <div className="mx-auto lg:w-1/2 sm:w-0 ">
-			<img src="./LogoDashMasjid.png" className="lg:w-full  mx-auto py-32 sm:w-0" alt="" />
+			<img src="./LogoDashMasjid.png" className="lg:w-full  mx-auto py-20 sm:w-0" alt="" />
 		  </div>
 		</div>
 	  </div>

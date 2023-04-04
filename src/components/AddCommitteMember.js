@@ -120,7 +120,18 @@ const AddCommitteMember = () => {
     <Sidebar content={items} background="#000000" className="" backdrop={true}>
     
     <div className="flex justify-center items-center h-screen w-full ">
-    <ToastContainer/>
+    <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
     <div className="w-1/2  p-8 m-4">
     <h1 className="text-[#E1C49A] text-2xl my-5 font-semibold">
     ADD MEMBER

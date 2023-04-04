@@ -16,26 +16,113 @@ import "swiper/css/navigation";
 const Timings = () => {
   const [searchparams, setSearchParms] = useSearchParams();
   const [email, setEmail] = useState(searchparams.get("email"))
+  const [region,setRegion]=useState(searchparams.get("region"))
   const [dataa, setdataa] = useState([])
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const [Asr, setAsr] = useState('')
-  const [Dhuhr, setDhuhr] = useState('')
-  const [Fajr, setFajr] = useState('')
-  const [Maghrib, setMaghrib] = useState('')
-  const [Isha, setIsha] = useState('')
+  const [imsak,setimsak]=useState('')
+  const [subuh,setsubuh]=useState('')
+  const [syuruk,setsyuruk]=useState('')
+  const [zohor,setzohor]=useState('')
+  const [asar,setasar]=useState('')
+  const [maghrib,setmaghrib]=useState('')
+  const [isyak,setisyak]=useState('')
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
 
-    axios.get("http://api.aladhan.com/v1/calendarByCity/2023/4?city=Kuala%20Lumpu&country=malaysia&method=2")
+    axios.get("https://waktu-solat-api.herokuapp.com/api/v1/prayer_times.json")
       .then(function (response) {
-        console.log(response.data.data[0].timings);
-        setAsr(response.data.data[0].timings.Asr)
-        setDhuhr(response.data.data[0].timings.Dhuhr)
-        setFajr(response.data.data[0].timings.Fajr)
-        setMaghrib(response.data.data[0].timings.Maghrib)
-        setIsha(response.data.data[0].timings.Isha)
-        console.log(response)
+        if(region==="gombak"){
+          setimsak(response.data.data.negeri[10].zon[0].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[0].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[0].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[0].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[0].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[0].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[0].waktu_solat[6].time)
+        }
+        if(region==="petaling"){
+          setimsak(response.data.data.negeri[10].zon[1].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[1].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[1].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[1].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[1].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[1].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[1].waktu_solat[6].time)
+        }
+        if(region==="sepang"){
+          setimsak(response.data.data.negeri[10].zon[2].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[2].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[2].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[2].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[2].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[2].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[2].waktu_solat[6].time)
+        }
+        if(region==="hulu langat"){
+          setimsak(response.data.data.negeri[10].zon[3].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[3].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[3].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[3].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[3].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[3].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[3].waktu_solat[6].time)
+        }
+        if(region==="hulu selangor"){
+          setimsak(response.data.data.negeri[10].zon[4].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[4].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[4].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[4].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[4].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[4].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[4].waktu_solat[6].time)
+        }
+        if(region==="s. alam"){
+          setimsak(response.data.data.negeri[10].zon[5].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[5].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[5].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[5].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[5].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[5].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[5].waktu_solat[6].time)
+        }
+        if(region==="kuala selangor"){
+          setimsak(response.data.data.negeri[10].zon[6].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[6].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[6].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[6].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[6].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[6].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[6].waktu_solat[6].time)
+        }
+        if(region==="sabak bernam"){
+          setimsak(response.data.data.negeri[10].zon[7].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[7].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[7].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[7].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[7].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[7].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[7].waktu_solat[6].time)
+        }
+        if(region==="klang"){
+          setimsak(response.data.data.negeri[10].zon[8].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[8].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[8].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[8].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[8].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[8].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[8].waktu_solat[6].time)
+        }
+        if(region==="kuala langat"){
+          setimsak(response.data.data.negeri[10].zon[9].waktu_solat[0].time)
+          setsubuh(response.data.data.negeri[10].zon[9].waktu_solat[1].time)
+          setsyuruk(response.data.data.negeri[10].zon[9].waktu_solat[2].time)
+          setzohor(response.data.data.negeri[10].zon[9].waktu_solat[3].time)
+          setasar(response.data.data.negeri[10].zon[9].waktu_solat[4].time)
+          setmaghrib(response.data.data.negeri[10].zon[9].waktu_solat[5].time)
+          setisyak(response.data.data.negeri[10].zon[9].waktu_solat[6].time)
+        }
+        
         setLoading(false)
       })
       .catch(function (error) { console.log(error); })
@@ -52,7 +139,7 @@ const Timings = () => {
 
         setdataa(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       });
-      console.log(dataa)
+      
     };
     getevents();
     const timerId = setInterval(refreshClock, 1000);
@@ -107,44 +194,30 @@ const Timings = () => {
     "Dhu al-Hijjah"
   ]
   
-  const a=parseInt(Asr)
-  const b=parseInt(Asr[3]+Asr[4]);
  
-  const c=parseInt(Dhuhr)
-  const d=parseInt(Dhuhr[3]+Dhuhr[4])
 
-  const e=parseInt(Fajr)
-  const f=parseInt(Fajr[3]+Fajr[4])
-
-  const g=parseInt(Maghrib)
-  const h=parseInt(Maghrib[3]+Maghrib[4])
-
-  const i=parseInt(Isha)
-  const j=parseInt(Isha[3]+Isha[4])
-
-  const hournow=parseInt(date.getHours())
-  const minnow=parseInt(date.getMinutes())
-  if(  (hournow===a && (minnow>=b && minnow<=b+20 )) || 
-       (hournow===c && (minnow>=d && minnow<=d+20 )) || 
-       (hournow===e && (minnow>=f && minnow<=f+20 )) || 
-       (hournow===g && (minnow>=h && minnow<=h+20 )) || 
-       (hournow===i && (minnow>=j && minnow<=j+20 )) 
-   ){
-    return(
-      <div className='min-h-screen bg-[#02062a] w-full text-[#E1C49A]'>
-      <img  className='m-auto' src="./LogoDashMasjid.png" alt="" />
-           <h1 className=' text-5xl font-semibold m text-center py-[2%]'>Prayer Going On
-          <br /> <br />
-           <span className='my-2 block'>
-           Please ensure your 
-           mobile phone is silent
-           </span>
-           <br />
+  
+  // if(  (hournow===a && (minnow>=b && minnow<=b+20 )) || 
+  //      (hournow===c && (minnow>=d && minnow<=d+20 )) || 
+  //      (hournow===e && (minnow>=f && minnow<=f+20 )) || 
+  //      (hournow===g && (minnow>=h && minnow<=h+20 )) || 
+  //      (hournow===i && (minnow>=j && minnow<=j+20 )) 
+  //  ){
+  //   return(
+  //     <div className='min-h-screen bg-[#02062a] w-full text-[#E1C49A]'>
+  //     <img  className='m-auto' src="./LogoDashMasjid.png" alt="" />
+  //          <h1 className=' text-5xl font-semibold m text-center py-[2%]'>Prayer Going On
+  //         <br /> <br />
+  //          <span className='my-2 block'>
+  //          Please ensure your 
+  //          mobile phone is silent
+  //          </span>
+  //          <br />
            
-           in the prayer hall</h1>
-      </div>
-    )
-  }
+  //          in the prayer hall</h1>
+  //     </div>
+  //   )
+  // }
   var now = new Date()
   var dayOfYear = Math.floor((new Date() - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24))
   var hijriDate = ((now.getFullYear()-621.5643)*365.24225 + dayOfYear) / 354.36707
@@ -201,11 +274,13 @@ const Timings = () => {
        <div className='mx-20'>
        
        <div className=' mt-52 text-4xl font-semibold mr-20  text-[#E1C49A]'>
-       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Fajr</span> <span>{Fajr.split("",5)}</span></h1>
-       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Dhuhr</span> <span>{Dhuhr.split("",5)}</span></h1>
-       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Asr</span> <span>{Asr.split("",5)}</span></h1>
-       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Maghrib</span> <span>{Maghrib.split("",5)}</span></h1>
-       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Isha</span> <span>{Isha.split("",5)}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Imsak</span> <span>{imsak}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Subuh</span> <span>{subuh}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Syuruk</span> <span>{syuruk}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Zohor</span> <span>{zohor}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Asar</span> <span>{asar}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Maghrib</span> <span>{maghrib}</span></h1>
+       <h1 className='flex justify-between my-10'><span className='text-5xl font-bold'>Isyak</span> <span>{isyak}</span></h1>
        </div>
        </div>
      

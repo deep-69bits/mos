@@ -43,7 +43,18 @@ const SignIn = () => {
     <div className="min-h-screen bg-[#02062a]   py-4 ">
       <div className="lg:flex  sm:block lg:px-40  sm:px-5">
         <div className="w-2/3  mx-auto ">
-        <ToastContainer />
+        <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
           <h1 className="text-white text-xl font-semibold">
             <img
               src="./LogoDashMasjid.png"
@@ -104,7 +115,7 @@ const SignIn = () => {
         </div>
 
         <div className="mx-auto lg:w-1/2 sm:w-0 ">
-          <img src="./LogoDashMasjid.png" className="lg:w-full sm:w-0" alt="" />
+          <img src="./LogoDashMasjid.png" className="lg:w-full py-20 sm:w-0" alt="" />
         </div>
       </div>
     </div>

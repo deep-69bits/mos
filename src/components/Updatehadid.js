@@ -138,9 +138,11 @@ const Updatehadid = () => {
 
     <div className='flex flex-col justify-center items-center w-full lg:w-4/5 mt-40 m-auto '>
     <input value={hadid} onChange={changehadid} type="text" className="text-black block  h-52 sm:w-full lg:w-2/3 my-20    rounded-3xl px-3 py-2 bg-gray-200 border-none"    />
+
     <button  onClick={upadateform} className="lg:w-1/2 sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
     Update Hadid
     </button>
+    
     <button
           className="lg:w-1/2 my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl"
           onClick={async () => {

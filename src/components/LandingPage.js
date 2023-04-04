@@ -142,14 +142,14 @@ const LandingPage = () => {
                   onChange={(e) => {
                     // console.log(e.target.value)
                     if (e.target.value != undefined) {
-                      navigate(`/masjid?email=${e.target.value}`);
+                      navigate(`/masjid?${e.target.value}`);
                     }
                   }}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected className="">Choose a Masjid</option>
                   {masjids.map((item, index) => {
                     return (
-                      <option className="text-[#E1C49A]" value={item.email}>{item.MasjidName}</option>
+                      <option className="text-[#E1C49A]" value={"email="+item.email+"&region="+item.region}>{item.MasjidName}</option>
                     );
                   })}
                 </select>
@@ -157,7 +157,7 @@ const LandingPage = () => {
             )}
           </div>
           <div>
-            <img  className="mx-auto" src="./LogoDashMasjid.png" alt="" />
+            <img  className="mx-auto mt-[-20px]" src="./LogoDashMasjid.png" alt="" />
           </div>
         </div>
       </div>

@@ -18,10 +18,10 @@ const ForgotPasswrod = () => {
     const e = email;
     const p = password;
     sendPasswordResetEmail(auth, e).then((a) => {
-        console.log(a)
-        toast("Email Sent")
-        setTimeout(function(){navigate("/signin")}, 2000);
-      })
+      console.log(a)
+      toast("Email Sent")
+      setTimeout(function () { navigate("/signin") }, 2000);
+    })
   };
   const changeemail = (e) => {
     setEmail(e.target.value);
@@ -36,7 +36,18 @@ const ForgotPasswrod = () => {
     <div className="min-h-screen bg-[#02062a]   py-4 ">
       <div className="lg:flex  sm:block lg:px-40  sm:px-5">
         <div className="w-2/3  mx-auto ">
-        <ToastContainer />
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <h1 className="text-white text-xl font-semibold">
             <img
               src="./LogoDashMasjid.png"
@@ -44,7 +55,7 @@ const ForgotPasswrod = () => {
               className="inline-block w-[50px]"
             />
             <Link to={'/'}>
-            DASHMASJID
+              DASHMASJID
             </Link>
           </h1>
           <div className="justify-center text-white  mt-40">
@@ -65,14 +76,14 @@ const ForgotPasswrod = () => {
               className="text-black block my-3 sm:w-full lg:w-1/2 rounded-3xl px-3 py-2 bg-gray-200 border-none"
               id=""
             />
-        
+
             <button
               onClick={forgot}
               className="lg:w-1/2 sm:w-full my-4 py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
               Send Email
             </button>
             <h2 className="text-gray-300 text-center lg:w-1/2 sm:w-full">
-            Already have an account?? 
+              Already have an account??
               <Link className="text-white font-bold" to={"/signin"}>
                 Sign in
               </Link>
