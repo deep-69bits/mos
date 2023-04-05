@@ -146,7 +146,7 @@ const SignUp = () => {
 			   <option value="kuala selangor" >Kuala Selangor</option>
 			   <option value="sabak bernam" >Sabak Bernam</option>
 			   <option value="klang" >Klang</option>
-			   <option value="kuala langat" >Luala Langat</option>
+			   <option value="kuala langat" >Kuala Langat</option>
 			  </select>
 			  
 			   

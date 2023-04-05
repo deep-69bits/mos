@@ -231,7 +231,7 @@ const Timings = () => {
     centeredSlides={true}
     slidesPerView={1}
     autoplay={{
-      delay: 4500,
+      delay: 4000,
       disableOnInteraction: false,
     }}
     pagination={{
@@ -309,8 +309,8 @@ const Timings = () => {
                 </span>
                 </h1>
                   <h1 className='text-4xl py-20 font-semibold'>{item.NameOfEvent}</h1>
-                  <img className='m-auto  max-w-2/3  max-h-[400px] mt-20 rounded-xl' src={item.image} alt="" />
-                  <h1 className='py-10 text-xl font-semibold'>{item.DescriptionOfEvent}</h1>
+                  <img className='m-auto  max-w-2/3  max-h-[400px]  rounded-xl' src={item.image} alt="" />
+                  <h1 className='text-4xl  px-20 font-semibold'>{item.DescriptionOfEvent}</h1>
                 </SwiperSlide>
               )
             }

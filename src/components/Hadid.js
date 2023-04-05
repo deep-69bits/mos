@@ -144,23 +144,20 @@ const Hadid = () => {
               {hadiddata.map((item, index) => {
                 if (item?.type == "hadid") {
                   return (
-                    <Card className="w-[30%]  h-[350px]   ">
-                      {item.image && (
-                        <img
-                          src={item.image}
-                          alt=""
-                          className="object-cover pb-4  h-[200px] w-[400px] rounded-t-3xl"
-                        />
-                      )}
-                     
-                     
-                       <h1 className='text-[#E1C49A] px-2'>{item.hadid}</h1> 
-                       <Link className="lg:w-1/2 sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl text-center" to={`/updatehadid?type=hadid&&id=${item.id}`}>
-                     
-                          Update
-                      
-                    </Link>
-                    </Card>
+                    <div className="w-1/3 mx-5 my-3 border-[1px]  border-[#E1C49A]">
+                    {
+                      item.image ?
+                        <img src={item.image} className="w-full h-[200px]" alt="" /> : null
+                    }
+                    <div className="text-center h-fit">
+                    <h1 className="text-xl h-full">{item.hadid}</h1>
+                    <Button className="bottom-0 my-4 lg:w-1/2 sm:w-full py-2 bg-black backdrop-blur-2xl bg-opacity-30 border-[1px] rounded-xl">
+                      <Link to={`/updatehadid?type=hadid&&id=${item.id}`}>
+                      Update
+                     </Link>
+                   </Button>
+                    </div>
+                  </div>
   
                     );
                   }
