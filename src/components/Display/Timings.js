@@ -219,7 +219,7 @@ const Timings = () => {
   //   )
   // }
   var now = new Date()
-  var dayOfYear = Math.floor((new Date() - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24))
+  var dayOfYear = Math.floor((new Date() - new Date(now.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24))-2
   var hijriDate = ((now.getFullYear()-621.5643)*365.24225 + dayOfYear) / 354.36707
   var hijriYear = Math.floor(hijriDate)
   var hijriMonth = Math.ceil((hijriDate - Math.floor(hijriDate)) * 354.36707 / 29.530589)
